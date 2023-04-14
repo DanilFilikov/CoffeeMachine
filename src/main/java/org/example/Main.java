@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         Bosh bosh = new Bosh("Bosh");
-        bosh.machineON();
+        bosh.workingEmulation();
 
     }
 }

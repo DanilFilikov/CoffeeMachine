@@ -11,8 +11,9 @@ public abstract class CoffeeMachine {
     public CoffeeMachine(String NAME) {
         this.NAME = NAME;
     }
-    public String getName(){
-     return NAME;
+
+    public String getName() {
+        return NAME;
     }
 
     public static boolean IsOn() {
@@ -23,7 +24,10 @@ public abstract class CoffeeMachine {
         On = on;
     }
 
-    public void setAmount_of_water(short amount_of_water) {
+    public void setAmount_of_water(short amount_of_water) throws Exception {
+        if(amount_of_water > 1000){
+            throw new Exception("Гоша чмо");
+        }
         this.amount_of_water = amount_of_water;
     }
 
@@ -47,10 +51,14 @@ public abstract class CoffeeMachine {
         return amount_of_water;
     }
 
-    public abstract void onOff();
+    public abstract void machineOnOff();
+
     public abstract void addWater();
-    public abstract void machineON();
+
+    public abstract void workingEmulation();
+
     public abstract void addCoffee();
+
     public abstract void addMilk();
 
 
