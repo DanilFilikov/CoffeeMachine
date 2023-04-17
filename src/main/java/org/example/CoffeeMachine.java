@@ -1,14 +1,15 @@
 package org.example;
 
 public abstract class CoffeeMachine {
-    static final short LIMIT_OF_COFFEE = 700;
+    static final short LIMIT_OF_COFFEE = 500;
     static final short LIMIT_OF_WATER = 1000;
-    static final short LIMIT_OF_MILK = 350;
+    static final short LIMIT_OF_MILK = 1000;
     private final String NAME;
     private short amount_of_coffee;
     private short amount_of_milk;
     private short amount_of_water;
     private static boolean On;
+    public static boolean isClean = true;
 
 
     public CoffeeMachine(String NAME) {
@@ -31,7 +32,7 @@ public abstract class CoffeeMachine {
         if(amount_of_water > LIMIT_OF_WATER){
             throw new Exception();
         }else{
-            this.amount_of_water = amount_of_water;
+           this.amount_of_water = amount_of_water;
         }
     }
 
@@ -64,14 +65,14 @@ public abstract class CoffeeMachine {
     }
 
     public abstract void machineOnOff();
-
     public abstract void addWater();
-    public abstract void workingEmulation() throws Exception;
+    public abstract void machineMenu() throws Exception;
     public abstract void addCoffee();
     public abstract void addMilk() throws Exception;
-    public abstract void waterLeft();
-    public abstract void coffeeLeft();
-    public abstract void milkLeft();
+    public abstract void ingredientsLeft();
     public abstract void clean();
-
+    public abstract void coffeeMenu() throws Exception;
+    public abstract void makeCoffee(Bosh.Coffee title) throws Exception;
+    public abstract void ingredientsCheck() throws Exception;
+    public abstract void cleanCheck() throws Exception;
 }
