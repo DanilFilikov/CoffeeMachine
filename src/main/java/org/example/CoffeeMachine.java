@@ -29,25 +29,25 @@ public abstract class CoffeeMachine {
     }
 
     public void setAmount_of_water(short amount_of_water) throws Exception {
-        if(amount_of_water > LIMIT_OF_WATER){
+        if (amount_of_water > LIMIT_OF_WATER) {
             throw new Exception();
-        }else{
-           this.amount_of_water = amount_of_water;
+        } else {
+            this.amount_of_water = amount_of_water;
         }
     }
 
     public void setAmount_of_coffee(short amount_of_coffee) throws Exception {
-        if(amount_of_coffee > LIMIT_OF_COFFEE){
+        if (amount_of_coffee > LIMIT_OF_COFFEE) {
             throw new Exception();
-        }else{
+        } else {
             this.amount_of_coffee = amount_of_coffee;
         }
     }
 
     public void setAmount_of_milk(short amount_of_milk) throws Exception {
-        if(amount_of_milk > LIMIT_OF_MILK){
+        if (amount_of_milk > LIMIT_OF_MILK) {
             throw new Exception();
-        }else{
+        } else {
             this.amount_of_milk = amount_of_milk;
         }
     }
@@ -65,14 +65,24 @@ public abstract class CoffeeMachine {
     }
 
     public abstract void machineOnOff();
-    public abstract void addWater();
+
+    public abstract void addWater() throws Exception;
+
     public abstract void machineMenu() throws Exception;
-    public abstract void addCoffee();
+
+    public abstract void addCoffee() throws Exception;
+
     public abstract void addMilk() throws Exception;
-    public abstract void ingredientsLeft();
-    public abstract void clean();
+
+    public abstract void ingredientsLeft() throws Exception;
+
+    public abstract void clean() throws Exception;
+
     public abstract void coffeeMenu() throws Exception;
+
     public abstract void makeCoffee(Bosh.Coffee title) throws Exception;
+
     public abstract void ingredientsCheck() throws Exception;
+
     public abstract void cleanCheck() throws Exception;
 }
