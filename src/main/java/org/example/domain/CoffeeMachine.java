@@ -66,24 +66,24 @@ public abstract class CoffeeMachine {
     }
 
     public void checkClean() throws Exception {
-        if (!isOn) {
-            throw new Exception("Кофемашина не работает");
-        }
+        if (isOn) {
 
         if (!isClean) {
             System.out.println("Кофемашина грязная!\n");
             throw new Exception("Кофемашина грязная!\n");
         }
-        Log.info("Checked if machine was clean");
-    }
-    public void checkIngredients() throws Exception {
-        if (!isOn) {
-            throw new Exception("Кофемашина не работает");
+        Log.info("Checked if the machine was clean");
         }
+    }
 
-        if (getAmountOfCoffee() < 50 || getAmountOfMilk() < 100 || getAmountOfWater() < 250) {
-            System.out.println("Недостаточно ингридиентов\n");
-            throw new Exception("Недостаточно ингридиентов\n");
+    public void checkIngredients() throws Exception {
+        if (isOn) {
+
+            if (getAmountOfCoffee() < 50 || getAmountOfMilk() < 100 || getAmountOfWater() < 200) {
+                System.out.println("Недостаточно ингридиентов\n");
+                throw new Exception("Недостаточно ингридиентов\n");
+            }
+            Log.info("Checked if there was enough ingredients");
         }
     }
 

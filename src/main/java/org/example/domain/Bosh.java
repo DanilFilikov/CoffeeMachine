@@ -140,7 +140,7 @@ public class Bosh extends CoffeeMachine {
             if (count == 10) {
                 isClean = false;
             }
-
+            Log.info("Looked throughout the menu");
             try {
                 checkClean();
                 checkIngredients();
@@ -214,7 +214,6 @@ public class Bosh extends CoffeeMachine {
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
-            Log.info("Looked throughout the menu");
         }
     }
 
