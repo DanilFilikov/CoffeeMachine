@@ -14,10 +14,6 @@ public abstract class CoffeeMachine {
 
     public static boolean isClean = true;
 
-    public boolean checkIsOn() {
-        return isOn;
-    }
-
     public void setIsOn(boolean isOn) {
        this.isOn = isOn;
     }
@@ -32,7 +28,7 @@ public abstract class CoffeeMachine {
 
     public void setAmountOfCoffee(short amountOfCoffee) throws Exception {
         if (amountOfCoffee > LIMIT_OF_COFFEE) {
-            throw new Exception();
+            throw new IllegalArgumentException("reached limit of coffee: " + amountOfCoffee + "of " + LIMIT_OF_COFFEE);
         } else {
             this.amountOfCoffee = amountOfCoffee;
         }
@@ -40,7 +36,7 @@ public abstract class CoffeeMachine {
 
     public void setAmountOfMilk(short amountOfMilk) throws Exception {
         if (amountOfMilk > LIMIT_OF_MILK) {
-            throw new Exception();
+            throw new IllegalArgumentException("reached limit of milk: " + amountOfMilk + "of " + LIMIT_OF_MILK);
         } else {
             this.amountOfMilk = amountOfMilk;
         }
@@ -69,7 +65,7 @@ public abstract class CoffeeMachine {
         }
     }
 
-    public void cleanCheck() throws Exception {
+    public void checkClean() throws Exception {
         if (!isOn) {
             throw new Exception("Кофемашина не работает");
         }
@@ -80,23 +76,32 @@ public abstract class CoffeeMachine {
         }
         Log.i("Checked if machine was clean");
     }
+    public void checkIngredients() throws Exception {
+        if (!isOn) {
+            throw new Exception("Кофемашина не работает");
+        }
+
+        if (getAmountOfCoffee() < 50 || getAmountOfMilk() < 100 || getAmountOfWater() < 250) {
+            System.out.println("Недостаточно ингридиентов\n");
+            throw new Exception("Недостаточно ингридиентов\n");
+        }
+    }
 
     public abstract void addWater() throws Exception;
 
-    public abstract void machineMenu() throws Exception;
+    public abstract void showMenu() throws Exception;
 
     public abstract void addCoffee() throws Exception;
 
     public abstract void addMilk() throws Exception;
 
-    public abstract void ingredientsLeft() throws Exception;
+    public abstract void showIngredients() throws Exception;
 
     public abstract void clean() throws Exception;
 
-    public abstract void coffeeMenu() throws Exception;
+    public abstract void showCoffeeMenu() throws Exception;
 
     public abstract void makeCoffee(Coffee title) throws Exception;
 
-    public abstract void ingredientsCheck() throws Exception;
 
 }

@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         CoffeeMachine bosh = new Bosh();
 
-        bosh.machineMenu();
+        bosh.showMenu();
     }
 }
 
