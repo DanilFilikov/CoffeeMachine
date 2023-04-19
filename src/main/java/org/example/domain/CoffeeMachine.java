@@ -58,10 +58,10 @@ public abstract class CoffeeMachine {
         setIsOn(!isOn);
         if (isOn) {
             System.out.println("Кофемашина включена");
-            Log.i("Coffee machine started");
+            Log.info("Coffee machine started");
         } else {
             System.out.println("Кофемашина выключена");
-            Log.i("Coffee machine turned off");
+            Log.info("Coffee machine turned off");
         }
     }
 
@@ -74,7 +74,7 @@ public abstract class CoffeeMachine {
             System.out.println("Кофемашина грязная!\n");
             throw new Exception("Кофемашина грязная!\n");
         }
-        Log.i("Checked if machine was clean");
+        Log.info("Checked if machine was clean");
     }
     public void checkIngredients() throws Exception {
         if (!isOn) {
