@@ -67,7 +67,6 @@ public abstract class CoffeeMachine {
 
     public void checkClean() throws Exception {
         if (isOn) {
-
         if (!isClean) {
             System.out.println("Кофемашина грязная!\n");
             throw new Exception("Кофемашина грязная!\n");
@@ -78,7 +77,6 @@ public abstract class CoffeeMachine {
 
     public void checkIngredients() throws Exception {
         if (isOn) {
-
             if (getAmountOfCoffee() < 50 || getAmountOfMilk() < 100 || getAmountOfWater() < 200) {
                 System.out.println("Недостаточно ингридиентов\n");
                 throw new Exception("Недостаточно ингридиентов\n");

@@ -88,6 +88,7 @@ public class Bosh extends CoffeeMachine {
         setAmountOfCoffee((short) (getAmountOfCoffee() - 50));
         setAmountOfMilk((short) (getAmountOfMilk() - 100));
         drinks.add(coffee);
+        Log.info("Made a coffee");
     }
 
     public void createProfile() {
@@ -114,6 +115,7 @@ public class Bosh extends CoffeeMachine {
             }
             String result = String.join(", ", profile.getDrinks());
             System.out.println("Напитки сохранены в профиль: " + result);
+            Log.info("Created a profile");
         }
     }
 
@@ -152,7 +154,7 @@ public class Bosh extends CoffeeMachine {
                 while (true) {
                     int coffeeOrdinal = in.nextInt();
                     if (coffeeOrdinal < 0 || coffeeOrdinal >= Coffee.values().length) {
-                        System.out.println("Нет такова ");
+                        System.out.println("Нет такого ");
                         break;
                     }
 
@@ -220,17 +222,18 @@ public class Bosh extends CoffeeMachine {
     private void printProfiles() {
         for (Profile profile : profiles) {
             System.out.println(profile);
+            Log.info("Shown profiles");
         }
     }
 
     private void printDrinks() {
         System.out.println(drinks);
+        Log.info("Shawn every coffee that have been made");
     }
 
     @Override
     public void showMenu() {
         boolean isWorking = true;
-
         while (isWorking) {
             System.out.println(isOn ? "Кофемашина работает" : "Кофемашина не работает");
             System.out.println("""
