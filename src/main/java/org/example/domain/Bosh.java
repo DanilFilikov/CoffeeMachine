@@ -76,9 +76,13 @@ public class Bosh extends CoffeeMachine {
     @Override
     public void clean() {
         if (isOn) {
-            isClean = true;
-            System.out.println("Кофемашина отчищена!\n");
-            Log.info("Coffee machine has been cleaned");
+            if (!isClean) {
+                isClean = true;
+                System.out.println("Кофемашина отчищена!\n");
+                Log.info("Coffee machine has been cleaned");
+            } else {
+                System.out.println("Чистка не требуется");
+            }
         }
     }
 
@@ -137,11 +141,7 @@ public class Bosh extends CoffeeMachine {
     @Override
     public void showCoffeeMenu() throws Exception {
         if (isOn) {
-            count += 1;
 
-            if (count == 10) {
-                isClean = false;
-            }
             Log.info("Looked throughout the menu");
             try {
                 checkClean();
@@ -156,6 +156,9 @@ public class Bosh extends CoffeeMachine {
                     if (coffeeOrdinal < 0 || coffeeOrdinal >= Coffee.values().length) {
                         System.out.println("Нет такого ");
                         break;
+                    }
+                    if (count == 5) {
+                        isClean = false;
                     }
 
                     switch (coffeeOrdinal) {
