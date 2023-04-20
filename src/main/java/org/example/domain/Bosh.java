@@ -88,7 +88,7 @@ public class Bosh extends CoffeeMachine {
     }
 
     @Override
-    public void makeCoffee(Coffee coffee) throws Exception {
+    public void makeCoffee(Coffee coffee) {
         setAmountOfWater((short) (getAmountOfWater() - 200));
         setAmountOfCoffee((short) (getAmountOfCoffee() - 50));
         setAmountOfMilk((short) (getAmountOfMilk() - 100));
@@ -128,13 +128,17 @@ public class Bosh extends CoffeeMachine {
         if (isOn) {
             System.out.println("Введите название напитка: ");
             System.out.println(Arrays.toString(Coffee.values()));
-            switch (Coffee.valueOf(in.next())) {
+            try {
+                switch (Coffee.valueOf(in.next())) {
                 case ESPRESSO -> System.out.println("Рецепт эспрессо");
                 case CAPPUCCINO -> System.out.println("Рецепт капучино");
                 case AMERICANO -> System.out.println("Рецепт американо");
                 case LATTE -> System.out.println("Рецепт латте");
-            }Log.info("Looked throughout the recipes");
-
+            }
+            Log.info("Looked throughout the recipes");
+        }catch (Exception exception){
+                System.out.println("Нет такого напитка");
+            }
         }
     }
 
