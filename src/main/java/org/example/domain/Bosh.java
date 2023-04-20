@@ -159,6 +159,7 @@ public class Bosh extends CoffeeMachine {
                     }
                     if (count == 5) {
                         isClean = false;
+                        count = 0;
                     }
 
                     switch (coffeeOrdinal) {
