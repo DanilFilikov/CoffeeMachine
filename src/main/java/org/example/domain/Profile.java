@@ -13,6 +13,11 @@ public class Profile {
     }
 
     public void addDrink(Coffee coffee) {
+        if (drinks.contains(coffee.getTitle())) {
+            System.out.println("Этот напиток уже добавлен");
+        }else {
+            System.out.println("Добавлен напиток " + coffee.getTitle());
+        }
         drinks.add(coffee.getTitle());
     }
 

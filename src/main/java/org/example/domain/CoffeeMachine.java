@@ -19,24 +19,24 @@ public abstract class CoffeeMachine {
     }
 
     public void setAmountOfWater(short amountOfWater) throws IllegalArgumentException {
-        if (amountOfWater > LIMIT_OF_WATER) {
-            throw new IllegalArgumentException("reached limit of water: " + amountOfWater + "of " + LIMIT_OF_WATER);
+        if (amountOfWater > LIMIT_OF_WATER || amountOfWater < 0) {
+            throw new IllegalArgumentException("reached limit of water: " + amountOfWater + " of " + LIMIT_OF_WATER + "or value can't be negative");
         } else {
             this.amountOfWater = amountOfWater;
         }
     }
 
-    public void setAmountOfCoffee(short amountOfCoffee) throws Exception {
-        if (amountOfCoffee > LIMIT_OF_COFFEE) {
-            throw new IllegalArgumentException("reached limit of coffee: " + amountOfCoffee + "of " + LIMIT_OF_COFFEE);
+    public void setAmountOfCoffee(short amountOfCoffee) {
+        if (amountOfCoffee > LIMIT_OF_COFFEE || amountOfCoffee < 0) {
+            throw new IllegalArgumentException("reached limit of coffee: " + amountOfCoffee + " of " + LIMIT_OF_COFFEE + "or value can't be negative");
         } else {
             this.amountOfCoffee = amountOfCoffee;
         }
     }
 
-    public void setAmountOfMilk(short amountOfMilk) throws Exception {
-        if (amountOfMilk > LIMIT_OF_MILK) {
-            throw new IllegalArgumentException("reached limit of milk: " + amountOfMilk + "of " + LIMIT_OF_MILK);
+    public void setAmountOfMilk(short amountOfMilk) {
+        if (amountOfMilk > LIMIT_OF_MILK || amountOfMilk < 0) {
+            throw new IllegalArgumentException("reached limit of milk: " + amountOfMilk + " of " + LIMIT_OF_MILK + "or value can't be negative");
         } else {
             this.amountOfMilk = amountOfMilk;
         }
