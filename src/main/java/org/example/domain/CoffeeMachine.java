@@ -78,7 +78,6 @@ public abstract class CoffeeMachine {
     public void checkIngredients() throws Exception {
         if (isOn) {
             if (getAmountOfCoffee() < 50 || getAmountOfMilk() < 100 || getAmountOfWater() < 200) {
-                System.out.println("Недостаточно ингридиентов\n");
                 throw new Exception("Недостаточно ингридиентов\n");
             }
             Log.info("Checked if there was enough ingredients");

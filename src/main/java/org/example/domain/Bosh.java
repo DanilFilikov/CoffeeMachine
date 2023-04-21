@@ -148,9 +148,8 @@ public class Bosh extends CoffeeMachine {
 
             Log.info("Looked throughout the menu");
 
-                checkClean();
-                checkIngredients();
-
+            checkIngredients();
+            checkClean();
                 while (true) {
 
                     System.out.println("Выберите желаемый напиток(Чтобы выйти из меню введите 4):");
@@ -237,6 +236,9 @@ public class Bosh extends CoffeeMachine {
 
     private void printProfiles() {
         if (isOn) {
+            if(profiles.isEmpty()) {
+                System.out.println("Записи отсутствуют");
+            }
             for (Profile profile : profiles) {
                 System.out.println(profile);
                 Log.info("Shown profiles");
@@ -246,6 +248,9 @@ public class Bosh extends CoffeeMachine {
 
     private void printDrinks() {
         if (isOn) {
+            if(drinks.isEmpty()){
+                System.out.println("Записи отсутсвуют");
+            }
             System.out.println(drinks);
             Log.info("Shown every coffee that have been made");
         }
