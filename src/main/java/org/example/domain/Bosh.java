@@ -143,19 +143,21 @@ public class Bosh extends CoffeeMachine {
     }
 
     @Override
-    public void showCoffeeMenu() {
+    public void showCoffeeMenu() throws Exception{
         if (isOn) {
 
             Log.info("Looked throughout the menu");
-            try {
+
                 checkClean();
                 checkIngredients();
-                System.out.println("Выберите желаемый напиток(Чтобы выйти из меню введите 4):");
-                for (Coffee coffee : Coffee.values()) {
-                    System.out.println(coffee.ordinal() + " " + coffee.getTitle());
-                }
 
                 while (true) {
+
+                    System.out.println("Выберите желаемый напиток(Чтобы выйти из меню введите 4):");
+                    for (Coffee coffee : Coffee.values()) {
+                        System.out.println(coffee.ordinal() + " " + coffee.getTitle());
+                    }
+                    try {
                     int coffeeOrdinal = in.nextInt();
                     if(coffeeOrdinal == 4){
                         break;
@@ -169,6 +171,7 @@ public class Bosh extends CoffeeMachine {
                         count = 0;
                     }
 
+
                     switch (coffeeOrdinal) {
                         case 0 -> {
                             System.out.println("Выбран напиток: " + Coffee.ESPRESSO + "\n");
@@ -181,7 +184,6 @@ public class Bosh extends CoffeeMachine {
                                 makeCoffee(Coffee.ESPRESSO);
                             }
                             System.out.println(Coffee.ESPRESSO + " готов в кол-ве: " + drinksCount + "шт!\n");
-                            System.out.println("Выберите напиток");
                             Log.info("ESPRESSO has been made");
                         }
                         case 1 -> {
@@ -195,7 +197,6 @@ public class Bosh extends CoffeeMachine {
                                 makeCoffee(Coffee.CAPPUCCINO);
                             }
                             System.out.println(Coffee.CAPPUCCINO + " готов в кол-ве: " + drinksCount + "шт!\n");
-                            System.out.println("Выберите напиток");
                             Log.info("CAPPUCCINO has been made");
                         }
                         case 2 -> {
@@ -209,7 +210,6 @@ public class Bosh extends CoffeeMachine {
                                 makeCoffee(Coffee.AMERICANO);
                             }
                             System.out.println(Coffee.AMERICANO + " готов в кол-ве: " + drinksCount + "шт!\n");
-                            System.out.println("Выберите напиток");
                             Log.info("AMERICANO has been made");
                         }
                         case 3 -> {
@@ -223,16 +223,17 @@ public class Bosh extends CoffeeMachine {
                                 makeCoffee(Coffee.LATTE);
                             }
                             System.out.println(Coffee.LATTE + " готов в кол-ве: " + drinksCount + "шт!\n");
-                            System.out.println("Выберите напиток");
                             Log.info("LATTE has been made");
                         }
                     }
+                }catch (InputMismatchException exception){
+                        in.next();
+                        System.out.println("Необходимо ввести число");
+                    }
                 }
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
             }
         }
-    }
+
 
     private void printProfiles() {
         if (isOn) {
@@ -295,8 +296,6 @@ public class Bosh extends CoffeeMachine {
             }catch (Exception exception){
                 System.out.println(exception.getMessage());;
             }
-
-
         }
     }
 }
