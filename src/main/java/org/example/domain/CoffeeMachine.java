@@ -68,10 +68,10 @@ public abstract class CoffeeMachine {
     public void checkClean() throws Exception {
         if (isOn) {
         if (!isClean) {
-            System.out.println("Кофемашина грязная!\n");
             throw new Exception("Кофемашина грязная!\n");
-        }
-        Log.info("Checked if the machine was clean");
+        }else{
+            System.out.println("Кофемашина чистая");
+        }        Log.info("Checked if the machine was clean");
         }
     }
 

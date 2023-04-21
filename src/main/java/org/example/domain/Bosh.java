@@ -104,13 +104,15 @@ public class Bosh extends CoffeeMachine {
             profiles.add(profile);
             System.out.println("Введите напитки(Чтобы выйти из меню введите 4): ");
 
-            for (Coffee coffee : Coffee.values()) {
-                System.out.println(coffee.ordinal() + " " + coffee.getTitle());
-            }
-
             while (true) {
+                try{
+                for (Coffee coffee : Coffee.values()) {
+                    System.out.println(coffee.ordinal() + " " + coffee.getTitle());
+                }
                     int coffeeOrdinal = in.nextInt();
-
+                    if(coffeeOrdinal == 4){
+                        break;
+                    }
                     if (coffeeOrdinal < 0 || coffeeOrdinal > Coffee.values().length) {
                         System.out.println("Нет такого");
                         break;
@@ -120,8 +122,13 @@ public class Bosh extends CoffeeMachine {
                     String result = String.join(", ", profile.getDrinks());
                     System.out.println("Напитки сохранены в профиль: " + result);
                     Log.info("Created a profile");
-            }
+                }catch (InputMismatchException exception){
+                    in.next();
+                    System.out.println("Необходимо ввести число");
+                }
         }
+        }
+
     }
 
     public void showRecipes() {
@@ -157,6 +164,10 @@ public class Bosh extends CoffeeMachine {
                         System.out.println(coffee.ordinal() + " " + coffee.getTitle());
                     }
                     try {
+                        if (count == 5) {
+                            isClean = false;
+                            count = 0;
+                        }
                     int coffeeOrdinal = in.nextInt();
                     if(coffeeOrdinal == 4){
                         break;
@@ -165,64 +176,72 @@ public class Bosh extends CoffeeMachine {
                         System.out.println("Нет такого ");
                         break;
                     }
-                    if (count == 5) {
-                        isClean = false;
-                        count = 0;
-                    }
-
 
                     switch (coffeeOrdinal) {
                         case 0 -> {
                             System.out.println("Выбран напиток: " + Coffee.ESPRESSO + "\n");
                             System.out.println("Введите кол-во напитков: \n");
                             int drinksCount = in.nextShort();
-                            for (int i = 0; i < drinksCount; i++) {
-                                checkClean();
-                                checkIngredients();
-                                count += 1;
-                                makeCoffee(Coffee.ESPRESSO);
+                            if (isClean) {
+                                for (int i = 0; i < drinksCount; i++) {
+                                    checkIngredients();
+                                    count += 1;
+                                    makeCoffee(Coffee.ESPRESSO);
+                                }
+                                System.out.println(Coffee.ESPRESSO + " готов в кол-ве: " + drinksCount + "шт!\n");
+                                Log.info("ESPRESSO has been made");
+                            } else {
+                                System.out.println("Кофемашина грязная!");
                             }
-                            System.out.println(Coffee.ESPRESSO + " готов в кол-ве: " + drinksCount + "шт!\n");
-                            Log.info("ESPRESSO has been made");
                         }
                         case 1 -> {
                             System.out.println("Выбран напиток: " + Coffee.CAPPUCCINO + "\n");
                             System.out.println("Введите кол-во напитков: ");
                             int drinksCount = in.nextShort();
+                            if (isClean) {
                             for (int i = 0; i < drinksCount; i++) {
-                                checkClean();
                                 checkIngredients();
                                 count += 1;
                                 makeCoffee(Coffee.CAPPUCCINO);
                             }
                             System.out.println(Coffee.CAPPUCCINO + " готов в кол-ве: " + drinksCount + "шт!\n");
                             Log.info("CAPPUCCINO has been made");
+                        } else {
+                                System.out.println("Кофемашина грязная!");
+                            }
                         }
                         case 2 -> {
                             System.out.println("Выбран напиток: " + Coffee.AMERICANO + "\n");
                             System.out.println("Введите кол-во напитков: ");
                             int drinksCount = in.nextShort();
+                            if (isClean) {
                             for (int i = 0; i < drinksCount; i++) {
-                                checkClean();
                                 checkIngredients();
                                 count += 1;
                                 makeCoffee(Coffee.AMERICANO);
                             }
                             System.out.println(Coffee.AMERICANO + " готов в кол-ве: " + drinksCount + "шт!\n");
                             Log.info("AMERICANO has been made");
+                        } else {
+                                System.out.println("Кофемашина грязная!");
+                            }
                         }
                         case 3 -> {
                             System.out.println("Выбран напиток: " + Coffee.LATTE + "\n");
                             System.out.println("Введите кол-во напитков: ");
                             int drinksCount = in.nextShort();
+                            if (isClean) {
                             for (int i = 0; i < drinksCount; i++) {
-                                checkClean();
                                 checkIngredients();
                                 count += 1;
                                 makeCoffee(Coffee.LATTE);
                             }
                             System.out.println(Coffee.LATTE + " готов в кол-ве: " + drinksCount + "шт!\n");
                             Log.info("LATTE has been made");
+                        }
+                            else {
+                                System.out.println("Кофемашина грязная!");
+                            }
                         }
                     }
                 }catch (InputMismatchException exception){
